@@ -1,10 +1,10 @@
-package com.any.anyrepo;
+package com.rambler.inmem;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AnyrepoApplicationTests {
+class AnyRepoApplicationTests {
 
 	@Test
 	void contextLoads() {
