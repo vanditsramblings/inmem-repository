@@ -10,11 +10,11 @@ import java.util.Set;
  * Provides various behavior to operate upon a KeyValue store
  *
  * @param <Key> Key Type
- * @param <Value> Value Type
+ * @param <Val> Value Type
  *
  * @author vandit
  */
-public interface GenericKeyValueRepository<Key,Value> extends GenericRepository {
+public interface GenericKeyValueRepository<Key, Val> extends GenericRepository {
 
     /**
      * Fetches value for the provided key
@@ -22,7 +22,7 @@ public interface GenericKeyValueRepository<Key,Value> extends GenericRepository 
      * @param key : The lookup key
      * @return the value associated to the provided key. `null` if not found.
      */
-    Value get(Key key);
+    Val get(Key key);
 
     /**
      * Fetches value for the provided key
@@ -30,7 +30,7 @@ public interface GenericKeyValueRepository<Key,Value> extends GenericRepository 
      * @param keys : A set of keys to be looked up
      * @return a map key-value pairs.Associated value for the key will be `null` if not found.
      */
-    Map<Key,Value> get(Set<Key> keys);
+    Map<Key, Val> get(Set<Key> keys);
 
     /**
      * Fetches all the values for the underlying entity
@@ -38,14 +38,14 @@ public interface GenericKeyValueRepository<Key,Value> extends GenericRepository 
      * @param size : A set of keys to be looked up
      * @return a map key-value pairs.Associated value for the key will be `null` if not found.
      */
-    Map<Key,Value> getAll(int size);
+    Map<Key, Val> getAll(int size);
 
     /**
      * Fetches all the values for the underlying entity
      *
      * @return a map key-value pairs.
      */
-    Map<Key,Value> getAll();
+    Map<Key, Val> getAll();
 
     /**
      * Returns all the keys for the entity
@@ -65,19 +65,19 @@ public interface GenericKeyValueRepository<Key,Value> extends GenericRepository 
     /**
      * Adds a new entry in the store ,  overwrites existing if already exist
      * @param key : Key
-     * @param value : Value
+     * @param val : Value
      * @return : true denotes a successful operation , false denotes a failure
      */
-    boolean put(Key key,Value value);
+    boolean put(Key key, Val val);
 
 
     /**
      * Adds a new entry in the store only if it does not exist already
      * @param key : Key
-     * @param value : Value
+     * @param val : Value
      * @return : true denotes a successful put , false if key already exist
      */
-    boolean putIfAbsent(Key key,Value value);
+    boolean putIfAbsent(Key key, Val val);
 
 
     /**
@@ -86,7 +86,7 @@ public interface GenericKeyValueRepository<Key,Value> extends GenericRepository 
      *
      * @return : true denotes a successful operation , false denotes a failure
      */
-    boolean put(Map<Key,Value> entries);
+    boolean put(Map<Key, Val> entries);
 
 
     /**
@@ -101,8 +101,8 @@ public interface GenericKeyValueRepository<Key,Value> extends GenericRepository 
      * Removes the key from the store
      *
      * @param keys : keys to be removed
-     * @return List of booleans , each entry denoting : true if successful , false if key does not exist
+     * @return true if successful , false if key does not exist
      */
-    List<Boolean> delete(Set<Key> keys);
+    boolean delete(Set<Key> keys);
 
 }
