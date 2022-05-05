@@ -12,5 +12,16 @@ Currently, implemented with [Caffine](https://github.com/ben-manes/caffeine)
 
 
 
+### TODOs : 
+
+1. ~~Generic interface~~
+2. ~~Generic abstract implementation~~
+3. ~~Sample entity to demonstrate behavior~~
+4. Expose application config params to set defaults and limits
+5. Build a cache manager
+6. Add monitoring support
+7. Add healthcheck and reporting
+8. Explore annotation based support
+
 
 

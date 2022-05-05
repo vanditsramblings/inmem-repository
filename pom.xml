@@ -8,10 +8,10 @@
 		<version>3.0.0-M2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.any</groupId>
-	<artifactId>anyrepo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>anyrepo</name>
+	<groupId>com.rambler</groupId>
+	<artifactId>inmem-repository</artifactId>
+	<version>1.0.0-alpha</version>
+	<name>inmem-repository</name>
 	<description>Generic wrapper for repository impl for any datasource</description>
 	<properties>
 		<java.version>17</java.version>
