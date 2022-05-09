@@ -2,6 +2,7 @@ package com.rambler.inmem.repository.impl;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import com.rambler.inmem.exception.RepositoryException;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashMap;
@@ -32,15 +33,15 @@ public abstract class GenericKeyValueRepository<Key,Val> implements IGenericKeyV
     private final Map<String, Cache<Key,Val>> cacheRegistry=new HashMap<>();
 
 
-    public GenericKeyValueRepository(String name){
+    public GenericKeyValueRepository(String name) throws RepositoryException {
         init(name,defaultTtl,defaultSize);
     }
 
-    public GenericKeyValueRepository(String name, int ttl){
+    public GenericKeyValueRepository(String name, int ttl) throws RepositoryException {
         init(name,ttl,defaultSize);
     }
 
-    public GenericKeyValueRepository(String name, int ttl, int size){
+    public GenericKeyValueRepository(String name, int ttl, int size) throws RepositoryException {
         init(name,ttl,size);
     }
 
@@ -50,7 +51,7 @@ public abstract class GenericKeyValueRepository<Key,Val> implements IGenericKeyV
      * @param ttl : Time to live for a single entry in the cache
      * @param size : Maximum allowed entries in the cache
      */
-    private void init(String name,int ttl,int size){
+    private void init(String name,int ttl,int size) throws RepositoryException {
         cache=Caffeine.newBuilder()
                 .maximumSize(size>maxSize?maxSize:size)
                 .expireAfterAccess(ttl>maxTtl?maxTtl:ttl, TimeUnit.MILLISECONDS)

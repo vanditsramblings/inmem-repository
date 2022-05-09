@@ -22,6 +22,8 @@ Currently, implemented with [Caffine](https://github.com/ben-manes/caffeine)
 6. Add monitoring support
 7. Add healthcheck and reporting
 8. Explore annotation based support
+9. Exception handling
+10. Logging
 
 
 
