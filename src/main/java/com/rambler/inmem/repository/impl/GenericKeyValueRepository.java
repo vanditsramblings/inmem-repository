@@ -3,6 +3,7 @@ package com.rambler.inmem.repository.impl;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import com.rambler.inmem.exception.RepositoryException;
+import com.rambler.inmem.manager.RepositoryManager;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.HashMap;
@@ -56,6 +57,7 @@ public abstract class GenericKeyValueRepository<Key,Val> implements IGenericKeyV
                 .maximumSize(size>maxSize?maxSize:size)
                 .expireAfterAccess(ttl>maxTtl?maxTtl:ttl, TimeUnit.MILLISECONDS)
                 .build();
+        RepositoryManager.register(name,cache);
     }
 
 

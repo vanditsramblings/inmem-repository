@@ -6,7 +6,7 @@ package com.rambler.inmem.exception;
  *
  * @author vandit
  */
-public class RepositoryException extends Exception{
+public class RepositoryException extends RuntimeException {
     private final ErrorCode code;
 
     public RepositoryException(ErrorCode code) {
