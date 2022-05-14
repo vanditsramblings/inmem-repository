@@ -1,5 +1,11 @@
 
 spring:
   application:
-    name: inmemrepo
-    version: 1.0-alpha
+    name: inmem-repository
+    version: 1.0.0-alpha
+
+
+cache:
+  defaults:
+    ttl.ms: 100000
+    max.size: 100000
