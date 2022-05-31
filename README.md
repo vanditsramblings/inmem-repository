@@ -17,13 +17,12 @@ Currently, implemented with [Caffine](https://github.com/ben-manes/caffeine)
 1. ~~Generic interface~~
 2. ~~Generic abstract implementation~~
 3. ~~Sample entity to demonstrate behavior~~
-4. Expose application config params to set defaults and limits
-5. Build a cache manager
-6. Add monitoring support
-7. Add healthcheck and reporting
-8. Explore annotation based support
-9. Exception handling
-10. Logging
+4. ~~Expose application config params to set defaults and limits~~
+5. ~~Build a cache manager~~
+6. ~~Add healthcheck and reporting~~
+7. Explore annotation based support
+8. Exception handling
+9. Logging
 
 
 
