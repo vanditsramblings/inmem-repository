@@ -1,13 +1,18 @@
 package com.rambler.inmem.utils;
 
-import com.github.benmanes.caffeine.cache.Cache;
-
 import java.lang.instrument.Instrumentation;
 
 public class ObjectSizeUtils {
-    private static Instrumentation instrumentation;
+    private static volatile Instrumentation globalInstrumentation;
 
-    public static Long getObjectSize(Cache cache) {
-        return -1l;
+    public static void premain(final String agentArgs, final Instrumentation inst) {
+        globalInstrumentation = inst;
+    }
+
+    public static long getObjectSize(final Object object) {
+        if (globalInstrumentation == null) {
+            throw new IllegalStateException("Agent not initialized.");
+        }
+        return globalInstrumentation.getObjectSize(object);
     }
 }
