@@ -6,6 +6,8 @@ spring:
 
 
 cache:
+  health:
+    evaluateObjectSize: true # This is a heavy operation , when set to true will provide object size in memory
   defaults:
     ttl.ms: 100000
     max.size: 100000
