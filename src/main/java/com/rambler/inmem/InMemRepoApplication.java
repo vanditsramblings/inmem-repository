@@ -3,7 +3,6 @@ package com.rambler.inmem;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 public class InMemRepoApplication {
 
 	public static void main(String[] args) {
