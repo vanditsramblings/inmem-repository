@@ -19,20 +19,13 @@ public abstract class GenericKeyValueRepository<Key,Val> implements IGenericKeyV
     @Value("${repo.cache.max.default.size:10000}")
     protected int defaultSize;
 
-    @Value("${repo.cache.max.allowed.ttl:10000000}")
-    protected int maxTtl;
+    @Value("${repo.cache.max.allowed.ttl.seconds:10000000}")
+    protected int maxTtl=10000000;
 
-    @Value("${repo.cache.max.default.ttl:10000000}")
-    protected int defaultTtl;
+    @Value("${repo.cache.max.default.ttl.seconds:10000000}")
+    protected int defaultTtl=10000000;
 
     private Cache<Key,Val> cache;
-
-
-    /**
-     * Registry to hold all caches
-     */
-    private final Map<String, Cache<Key,Val>> cacheRegistry=new HashMap<>();
-
 
     public GenericKeyValueRepository(String name) throws RepositoryException {
         init(name,defaultTtl,defaultSize);
@@ -55,7 +48,8 @@ public abstract class GenericKeyValueRepository<Key,Val> implements IGenericKeyV
     private void init(String name,int ttl,int size) throws RepositoryException {
         cache=Caffeine.newBuilder()
                 .maximumSize(size>maxSize?maxSize:size)
-                .expireAfterAccess(ttl>maxTtl?maxTtl:ttl, TimeUnit.MILLISECONDS)
+                .expireAfterWrite(ttl>maxTtl?maxTtl:ttl, TimeUnit.MILLISECONDS)
+                .recordStats()
                 .build();
         RepositoryManager.register(name,cache);
     }
