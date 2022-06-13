@@ -5,8 +5,9 @@ import com.github.benmanes.caffeine.cache.stats.CacheStats;
 import com.rambler.inmem.utils.ObjectSizeUtils;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.lang.instrument.Instrumentation;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * A static registry for all caches present.
