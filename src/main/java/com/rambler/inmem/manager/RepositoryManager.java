@@ -40,40 +40,6 @@ public class RepositoryManager {
         return health;
     }
 
-    public static class Repo {
-
-        Cache cache;
-        String name;
-        Long createdDate;
-
-        public Repo(String name, Cache cache) {
-            this.cache = cache;
-            this.name = name;
-            this.createdDate = System.currentTimeMillis();
-        }
-    }
-
-    public static class RepoHealth {
-
-        private final long objectSize;
-        Repo repo;
-        private final  Long size;
-        CacheStats stats;
-
-        public RepoHealth(Repo e, boolean evaluateDefaultSize) {
-            this.repo = e;
-            this.size = e.cache.estimatedSize();
-            this.stats = e.cache.stats();
-
-            if(evaluateDefaultSize){
-                this.objectSize=ObjectSizeUtils.getObjectSize(e.cache);
-            }else {
-                this.objectSize=-1l;
-            }
-
-        }
-
-    }
 
 
 }

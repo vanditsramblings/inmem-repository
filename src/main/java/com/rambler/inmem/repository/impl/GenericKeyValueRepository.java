@@ -6,7 +6,6 @@ import com.rambler.inmem.exception.RepositoryException;
 import com.rambler.inmem.manager.RepositoryManager;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -14,13 +13,13 @@ import java.util.concurrent.TimeUnit;
 public abstract class GenericKeyValueRepository<Key,Val> implements IGenericKeyValueRepository<Key,Val> {
 
     @Value("${repo.cache.max.allowed.size:10000000}")
-    protected int maxSize;
+    protected int maxSize=10000000;
 
     @Value("${repo.cache.max.default.size:10000}")
-    protected int defaultSize;
+    protected int defaultSize=10000;
 
-    @Value("${repo.cache.max.allowed.ttl.seconds:10000000}")
-    protected int maxTtl=10000000;
+    @Value("${repo.cache.max.allowed.ttl.seconds:84600000}")
+    protected long maxTtl=84600000;
 
     @Value("${repo.cache.max.default.ttl.seconds:10000000}")
     protected int defaultTtl=10000000;
@@ -48,7 +47,22 @@ public abstract class GenericKeyValueRepository<Key,Val> implements IGenericKeyV
     private void init(String name,int ttl,int size) throws RepositoryException {
         cache=Caffeine.newBuilder()
                 .maximumSize(size>maxSize?maxSize:size)
-                .expireAfterWrite(ttl>maxTtl?maxTtl:ttl, TimeUnit.MILLISECONDS)
+                .expireAfterWrite(ttl>maxTtl?maxTtl:ttl, TimeUnit.SECONDS)
+                .recordStats()
+                .build();
+        RepositoryManager.register(name,cache);
+    }
+
+
+    /**
+     * Initializes caffeine cache instance with provided attributes
+     * @param name : Name of the cache
+     * @param ttl : Time to live for a single entry in the cache
+     * @param size : Maximum allowed entries in the cache
+     */
+    private void init(String name,int size) throws RepositoryException {
+        cache=Caffeine.newBuilder()
+                .maximumSize(size>maxSize?maxSize:size)
                 .recordStats()
                 .build();
         RepositoryManager.register(name,cache);
