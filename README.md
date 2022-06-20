@@ -20,9 +20,10 @@ Currently, implemented with [Caffine](https://github.com/ben-manes/caffeine)
 4. ~~Expose application config params to set defaults and limits~~
 5. ~~Build a cache manager~~
 6. ~~Add healthcheck and reporting~~
-7. Explore annotation based support
-8. Exception handling
-9. Logging
+7. ~~Explore annotation based support~~
+8. ~~Exception handling~~
+9. ~~Logging~~
+10. ~~Unit tests~~
 
 
 
